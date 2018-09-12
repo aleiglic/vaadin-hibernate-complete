@@ -1,4 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: hello.MainViewTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.805 s - in hello.MainViewTests
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 5.435 s <<< FAILURE! - in hello.MainViewTests
+shouldFilterOutTheGridWithTheProvidedLastName(hello.MainViewTests)  Time elapsed: 0.092 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected size:<1> but was:<4> in:
+<[Customer[id=14, firstName='Josh', lastName='Long'],
+    Customer[id=21, firstName='Josh', lastName='Long'],
+    Customer[id=28, firstName='Josh', lastName='Long'],
+    Customer[id=35, firstName='Josh', lastName='Long']]>
+	at hello.MainViewTests.shouldFilterOutTheGridWithTheProvidedLastName(MainViewTests.java:79)
+

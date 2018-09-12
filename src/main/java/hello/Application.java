@@ -16,9 +16,10 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class);
 	}
-
+	/*
 	@Bean
 	public CommandLineRunner loadData(CustomerRepository repository) {
+		
 		return (args) -> {
 			// save a couple of customers
 			repository.save(new Customer("Jack", "Bauer"));
@@ -50,7 +51,8 @@ public class Application {
 				log.info(bauer.toString());
 			}
 			log.info("");
+			
 		};
-	}
+	}*/
 
 }

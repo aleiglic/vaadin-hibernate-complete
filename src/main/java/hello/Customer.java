@@ -1,5 +1,7 @@
 package hello;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,12 +19,22 @@ public class Customer {
 
 	private String lastName;
 
+	private Date birthDate;
+	
 	protected Customer() {
 	}
 
+	@SuppressWarnings("deprecation")
 	public Customer(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.birthDate = new Date("12/08/2018");
+	}
+	
+	public Customer(String firstName, String lastName, Date birthDate) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
 	}
 
 	public Long getId() {
@@ -43,6 +55,14 @@ public class Customer {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	@Override

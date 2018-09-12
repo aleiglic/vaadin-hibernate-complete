@@ -1,6 +1,7 @@
 package hello;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -67,10 +68,11 @@ public class MainViewTests {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void shouldFilterOutTheGridWithTheProvidedLastName() {
 
-		this.repository.save(new Customer("Josh", "Long"));
+		this.repository.save(new Customer("Josh", "Long", new Date("12/08/2018")));
 
 		mainView.listCustomers("Long");
 
