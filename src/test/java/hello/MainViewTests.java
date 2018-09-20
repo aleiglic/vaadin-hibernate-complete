@@ -1,5 +1,6 @@
 package hello;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,7 +73,7 @@ public class MainViewTests {
 	@Test
 	public void shouldFilterOutTheGridWithTheProvidedLastName() {
 
-		this.repository.save(new Customer("Josh", "Long", new Date("12/08/2018")));
+		this.repository.save(new Customer("Josh", "Long", LocalDate.parse("2018-08-12")));
 
 		mainView.listCustomers("Long");
 

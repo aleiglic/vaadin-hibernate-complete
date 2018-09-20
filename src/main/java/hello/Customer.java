@@ -1,11 +1,14 @@
 package hello;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "Customers")
@@ -19,19 +22,19 @@ public class Customer {
 
 	private String lastName;
 
-	private Date birthDate;
+	private LocalDate birthDate;
 	
 	protected Customer() {
+		this.birthDate = LocalDate.parse("2018-08-12");
 	}
 
-	@SuppressWarnings("deprecation")
 	public Customer(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthDate = new Date("12/08/2018");
+		this.birthDate = LocalDate.parse("2018-08-12");
 	}
 	
-	public Customer(String firstName, String lastName, Date birthDate) {
+	public Customer(String firstName, String lastName, LocalDate birthDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
@@ -57,12 +60,16 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	public Integer getAge() {
+		return Objects.isNull(birthDate) ? 0 : Period.between(birthDate, LocalDate.now()).getYears();
 	}
 
 	@Override

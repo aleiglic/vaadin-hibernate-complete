@@ -3,6 +3,7 @@ package hello;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyNotifier;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -24,6 +25,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @UIScope
 public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8766924191209097737L;
+
 	private final CustomerRepository repository;
 
 	/**
@@ -34,7 +40,7 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 	/* Fields to edit properties in Customer entity */
 	TextField firstName = new TextField("First name");
 	TextField lastName = new TextField("Last name");
-	TextField birthDay = new TextField("Birth day");
+	DatePicker birthDate = new DatePicker("Birth date");
 
 	/* Action buttons */
 	// TODO why more code?
@@ -50,7 +56,7 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 	public CustomerEditor(CustomerRepository repository) {
 		this.repository = repository;
 
-		add(firstName, lastName, birthDay, actions);
+		add(firstName, lastName, birthDate, actions);
 
 		// bind using naming convention
 		binder.bindInstanceFields(this);
