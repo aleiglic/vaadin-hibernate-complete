@@ -14,6 +14,11 @@ import org.springframework.util.StringUtils;
 @Route
 public class MainView extends VerticalLayout {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5959967959646653988L;
+
 	private final CustomerRepository repo;
 
 	private final CustomerEditor editor;

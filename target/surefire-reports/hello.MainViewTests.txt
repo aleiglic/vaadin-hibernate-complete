@@ -1,14 +1,24 @@
 -------------------------------------------------------------------------------
 Test set: hello.MainViewTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 5.435 s <<< FAILURE! - in hello.MainViewTests
-shouldFilterOutTheGridWithTheProvidedLastName(hello.MainViewTests)  Time elapsed: 0.092 s  <<< FAILURE!
-java.lang.AssertionError: 
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 5.43 s <<< FAILURE! - in hello.MainViewTests
+shouldInitializeWithInvisibleEditor(hello.MainViewTests)  Time elapsed: 0.016 s  <<< ERROR!
+java.lang.NullPointerException
+	at hello.MainViewTests.setup(MainViewTests.java:39)
 
-Expected size:<1> but was:<4> in:
-<[Customer[id=14, firstName='Josh', lastName='Long'],
-    Customer[id=21, firstName='Josh', lastName='Long'],
-    Customer[id=28, firstName='Josh', lastName='Long'],
-    Customer[id=35, firstName='Josh', lastName='Long']]>
-	at hello.MainViewTests.shouldFilterOutTheGridWithTheProvidedLastName(MainViewTests.java:79)
+shouldFillOutTheGridWithNewData(hello.MainViewTests)  Time elapsed: 0.008 s  <<< ERROR!
+java.lang.NullPointerException
+	at hello.MainViewTests.setup(MainViewTests.java:39)
+
+shouldInitializeTheGridWithCustomerRepositoryData(hello.MainViewTests)  Time elapsed: 0.006 s  <<< ERROR!
+java.lang.NullPointerException
+	at hello.MainViewTests.setup(MainViewTests.java:39)
+
+shouldMakeEditorVisible(hello.MainViewTests)  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NullPointerException
+	at hello.MainViewTests.setup(MainViewTests.java:39)
+
+shouldFilterOutTheGridWithTheProvidedLastName(hello.MainViewTests)  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NullPointerException
+	at hello.MainViewTests.setup(MainViewTests.java:39)
 

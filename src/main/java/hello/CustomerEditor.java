@@ -28,7 +28,6 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8766924191209097737L;
 
 	private final CustomerRepository repository;
 
