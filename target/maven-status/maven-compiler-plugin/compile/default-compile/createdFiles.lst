@@ -1,7 +1,6 @@
 hello/MainController.class
 hello/CustomerEditor.class
 hello/Customer.class
-hello/MainView.class
 hello/Application.class
 hello/CustomerEditor$ChangeHandler.class
 hello/CustomerRepository.class

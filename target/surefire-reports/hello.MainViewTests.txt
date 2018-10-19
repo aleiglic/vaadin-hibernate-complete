@@ -1,20 +1,20 @@
 -------------------------------------------------------------------------------
 Test set: hello.MainViewTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 5.43 s <<< FAILURE! - in hello.MainViewTests
-shouldInitializeWithInvisibleEditor(hello.MainViewTests)  Time elapsed: 0.016 s  <<< ERROR!
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 6.816 s <<< FAILURE! - in hello.MainViewTests
+shouldInitializeWithInvisibleEditor(hello.MainViewTests)  Time elapsed: 0.019 s  <<< ERROR!
 java.lang.NullPointerException
 	at hello.MainViewTests.setup(MainViewTests.java:39)
 
-shouldFillOutTheGridWithNewData(hello.MainViewTests)  Time elapsed: 0.008 s  <<< ERROR!
+shouldFillOutTheGridWithNewData(hello.MainViewTests)  Time elapsed: 0.005 s  <<< ERROR!
 java.lang.NullPointerException
 	at hello.MainViewTests.setup(MainViewTests.java:39)
 
-shouldInitializeTheGridWithCustomerRepositoryData(hello.MainViewTests)  Time elapsed: 0.006 s  <<< ERROR!
+shouldInitializeTheGridWithCustomerRepositoryData(hello.MainViewTests)  Time elapsed: 0.007 s  <<< ERROR!
 java.lang.NullPointerException
 	at hello.MainViewTests.setup(MainViewTests.java:39)
 
-shouldMakeEditorVisible(hello.MainViewTests)  Time elapsed: 0.005 s  <<< ERROR!
+shouldMakeEditorVisible(hello.MainViewTests)  Time elapsed: 0.01 s  <<< ERROR!
 java.lang.NullPointerException
 	at hello.MainViewTests.setup(MainViewTests.java:39)
 

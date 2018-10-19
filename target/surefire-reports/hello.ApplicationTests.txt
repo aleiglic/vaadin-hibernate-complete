@@ -1,4 +1,18 @@
 -------------------------------------------------------------------------------
 Test set: hello.ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.858 s - in hello.ApplicationTests
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 4.133 s <<< FAILURE! - in hello.ApplicationTests
+shouldFindTwoBauerCustomers(hello.ApplicationTests)  Time elapsed: 0.447 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected size:<2> but was:<4> in:
+<[Customer[id=1, firstName='Jack', lastName='Bauer'],
+    Customer[id=3, firstName='Kim', lastName='Bauer'],
+    Customer[id=7, firstName='Jack', lastName='Bauer'],
+    Customer[id=9, firstName='Kim', lastName='Bauer']]>
+	at hello.ApplicationTests.shouldFindTwoBauerCustomers(ApplicationTests.java:25)
+
+shouldFillOutComponentsWithDataWhenTheApplicationIsStarted(hello.ApplicationTests)  Time elapsed: 0.028 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[5]L> but was:<[11]L>
+	at hello.ApplicationTests.shouldFillOutComponentsWithDataWhenTheApplicationIsStarted(ApplicationTests.java:20)
+

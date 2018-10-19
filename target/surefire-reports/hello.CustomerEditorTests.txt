@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: hello.CustomerEditorTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.84 s <<< FAILURE! - in hello.CustomerEditorTests
-hello.CustomerEditorTests  Time elapsed: 0.838 s  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.008 s <<< FAILURE! - in hello.CustomerEditorTests
+hello.CustomerEditorTests  Time elapsed: 1.007 s  <<< ERROR!
 org.mockito.exceptions.base.MockitoException: 
 
 Cannot instantiate @InjectMocks field named 'editor' of type 'class hello.CustomerEditor'.
