@@ -28,6 +28,11 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = -8766924191209097737L;
+
+	/**
+	 * 
+	 */
 
 	private final CustomerRepository repository;
 
@@ -47,7 +52,7 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 	Button cancel = new Button("Cancel");
 	Button delete = new Button("Delete", VaadinIcon.TRASH.create());
 	HorizontalLayout actions = new HorizontalLayout(save, cancel, delete);
-
+	
 	Binder<Customer> binder = new Binder<>(Customer.class);
 	private ChangeHandler changeHandler;
 
