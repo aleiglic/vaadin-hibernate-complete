@@ -1,4 +1,4 @@
-package hello;
+package hello.editors;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyNotifier;
@@ -11,6 +11,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
+
+import hello.entities.Customer;
+import hello.repositories.CustomerRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

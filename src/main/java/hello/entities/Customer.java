@@ -1,21 +1,25 @@
-package hello;
+package hello.entities;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import org.springframework.hateoas.Identifiable;
+
 
 
 @Entity
 @Table(name = "Customers")
-public class Customer {
+public class Customer implements Identifiable<Long>{
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String firstName;
@@ -24,7 +28,11 @@ public class Customer {
 
 	private LocalDate birthDate;
 	
-	protected Customer() {
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "customer_id")
+	private Set<Purchase> purchases = new HashSet<Purchase>();
+	
+	public Customer() {
 		this.birthDate = LocalDate.parse("2018-08-12");
 	}
 
@@ -72,10 +80,33 @@ public class Customer {
 		return Objects.isNull(birthDate) ? 0 : Period.between(birthDate, LocalDate.now()).getYears();
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id,
 				firstName, lastName);
+	}*/
+	
+	@Override
+	public String toString() {
+		return String.format("%d: %s, %s", id, lastName, firstName);
+	}
+
+	public Set<Purchase> getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(Set<Purchase> purchases) {
+		this.purchases = purchases;
+	}
+	
+	public void addPurchase(Purchase p) {
+		this.purchases.add(p);
+	}
+	
+	public List<Purchase> getAllPurchases(){
+		List<Purchase> list = new ArrayList<Purchase>();
+		list.addAll(purchases);
+		return list;
 	}
 
 }

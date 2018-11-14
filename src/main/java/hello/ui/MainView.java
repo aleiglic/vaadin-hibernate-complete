@@ -1,4 +1,4 @@
-package hello;
+package hello.ui;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -9,6 +9,11 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
+import hello.editors.CustomerEditor;
+import hello.entities.Customer;
+import hello.repositories.CustomerRepository;
+
 import org.springframework.util.StringUtils;
 
 @SuppressWarnings("unused")
@@ -25,7 +30,7 @@ public class MainView extends VerticalLayout {
 
 	private final CustomerEditor editor;
 
-	final Grid<Customer> grid;
+	public final Grid<Customer> grid;
 
 	final TextField filter;
 
@@ -73,7 +78,7 @@ public class MainView extends VerticalLayout {
 	}
 
 	// tag::listCustomers[]
-	void listCustomers(String filterText) {
+	public void listCustomers(String filterText) {
 		if (StringUtils.isEmpty(filterText)) {
 			grid.setItems(repo.findAll());
 		}
