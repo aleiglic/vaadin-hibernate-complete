@@ -3,12 +3,15 @@ package hello.ui;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.server.Page;
 
 import hello.editors.CustomerEditor;
 import hello.entities.Customer;
@@ -65,7 +68,10 @@ public class MainView extends VerticalLayout {
 		});
 
 		// Instantiate and edit new Customer the new button is clicked
-		addNewBtn.addClickListener(e -> editor.editCustomer(new Customer("", "")));
+		addNewBtn.addClickListener(e -> {
+			editor.editCustomer(new Customer("", ""));
+			Notification.show("New customer " + Page.getCurrent(), 3, Position.MIDDLE);
+		});
 
 		// Listen changes made by the editor, refresh data from backend
 		editor.setChangeHandler(() -> {

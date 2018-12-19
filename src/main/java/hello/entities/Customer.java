@@ -28,7 +28,7 @@ public class Customer implements Identifiable<Long>{
 
 	private LocalDate birthDate;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Set<Purchase> purchases = new HashSet<Purchase>();
 	

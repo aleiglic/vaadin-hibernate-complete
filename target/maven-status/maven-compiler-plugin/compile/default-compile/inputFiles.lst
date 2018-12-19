@@ -18,5 +18,6 @@
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/MainController.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/repositories/PurchaseRepository.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/CustomerEditor.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/PurchaseDetailEditor.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/Application.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/View2.java
