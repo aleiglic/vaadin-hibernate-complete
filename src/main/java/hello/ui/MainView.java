@@ -11,7 +11,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.server.Page;
 
 import hello.editors.CustomerEditor;
 import hello.entities.Customer;
@@ -20,7 +19,7 @@ import hello.repositories.CustomerRepository;
 import org.springframework.util.StringUtils;
 
 @SuppressWarnings("unused")
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "Main", layout = MainLayout.class)
 @PageTitle("Customers")
 public class MainView extends VerticalLayout {
 
@@ -70,7 +69,7 @@ public class MainView extends VerticalLayout {
 		// Instantiate and edit new Customer the new button is clicked
 		addNewBtn.addClickListener(e -> {
 			editor.editCustomer(new Customer("", ""));
-			Notification.show("New customer " + Page.getCurrent(), 3, Position.MIDDLE);
+			Notification.show("New customer " + this.getUI().get().getPage(), 3, Position.MIDDLE);
 		});
 
 		// Listen changes made by the editor, refresh data from backend

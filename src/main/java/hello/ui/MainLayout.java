@@ -27,13 +27,15 @@ import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 
 /**
  * The main layout contains the header with the navigation buttons, and the
  * child views below that.
  */
-@HtmlImport("frontend://styles/shared-styles.html")
+@HtmlImport("webapp/frontend/styles/shared-styles.html")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 public class MainLayout extends Div
         implements RouterLayout, PageConfigurator {
@@ -46,7 +48,7 @@ public class MainLayout extends Div
 	public MainLayout() {
         H2 title = new H2("Purchases");
         title.addClassName("main-layout__title");
-
+        
         RouterLink mainView = new RouterLink(null, MainView.class);
         mainView.add(new Icon(VaadinIcon.LIST), new Text("Customers"));
         mainView.addClassName("main-layout__nav-item");

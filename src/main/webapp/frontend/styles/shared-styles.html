@@ -142,6 +142,24 @@
             box-sizing: border-box;
             pointer-events: none;
         }
+        
+        .login-information {
+            min-width: 300px;
+            flex: 0;
+            background: var(--lumo-primary-color-50pct);
+        }
+
+        /* Stack login-screen vertically on narrow screen */
+        @media (max-width: 800px) {
+
+            .login-screen {
+                flex-direction: column;
+            }
+
+            .login-information {
+                display: block;
+            }
+        }
     </style>
 
     <dom-module id="my-dialog-styles" theme-for="vaadin-dialog-overlay">
