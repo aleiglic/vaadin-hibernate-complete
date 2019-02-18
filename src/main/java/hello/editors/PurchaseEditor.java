@@ -14,7 +14,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.spring.annotation.*;
 
-import hello.editors.CustomerEditor.ChangeHandler;
 import hello.entities.Customer;
 import hello.entities.Product;
 import hello.entities.Purchase;

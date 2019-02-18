@@ -33,6 +33,7 @@ import hello.repositories.ProductRepository;
 import hello.repositories.PurchaseDetailRepository;
 import hello.repositories.PurchaseRepository;
 
+@SuppressWarnings("unused")
 @Route(value = "make_purchase", layout = MainLayout.class)
 @PageTitle("View3")
 public class View3 extends VerticalLayout{
@@ -128,7 +129,6 @@ public class View3 extends VerticalLayout{
 
 	
 
-	@SuppressWarnings("deprecation")
 	private void savePurchase() {
 		if(purchase != null && !comboCustomer.isEmpty() && !detailsInGrid.isEmpty()) {
 			try {

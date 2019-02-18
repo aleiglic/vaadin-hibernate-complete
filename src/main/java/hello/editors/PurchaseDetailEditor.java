@@ -20,6 +20,7 @@ import hello.entities.PurchaseDetail;
 import hello.repositories.ProductRepository;
 import hello.repositories.PurchaseDetailRepository;
 
+@SuppressWarnings("unused")
 @SpringComponent
 @UIScope
 public class PurchaseDetailEditor extends VerticalLayout implements KeyNotifier{

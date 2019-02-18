@@ -15,27 +15,31 @@
  */
 package hello.ui;
 
+
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
 
 
 /**
  * The main layout contains the header with the navigation buttons, and the
  * child views below that.
  */
-@HtmlImport("webapp/frontend/styles/shared-styles.html")
+//@HtmlImport("webapp/frontend/styles/shared-styles.html")
+@HtmlImport("styles/shared-styles.html")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 public class MainLayout extends Div
         implements RouterLayout, PageConfigurator {
@@ -67,11 +71,28 @@ public class MainLayout extends Div
         view2.add(new Icon(VaadinIcon.ARROW_UP), new Text("View2"));
         view2.addClassName("main-layout__nav-item");
         
-        RouterLink view3 = new RouterLink(null, View3.class);
+        RouterLink view3 = new RouterLink("", View3.class);
         view3.add(new Icon(VaadinIcon.ARROW_UP), new Text("Make purchase"));
         view3.addClassName("main-layout__nav-item");
         
-        Div navigation = new Div(mainView, productView, purchaseView, view2, view3);
+        HorizontalLayout right = new HorizontalLayout();
+        
+        Button logout = new Button("Logout", VaadinIcon.SIGN_OUT.create());
+        /*logout.addClickListener(e -> {
+        	SecurityContextHolder.clearContext();
+        	this.getUI().get().getSession().close();
+        	this.getUI().get().navigate("login");  // navigate to login page
+        });*/
+        
+        Anchor anchorExit = new Anchor();
+        anchorExit.setHref("logout");
+        anchorExit.setTarget("logout");
+        anchorExit.add(logout);
+        
+        right.add(anchorExit);
+        right.setAlignItems(Alignment.END);
+        
+        Div navigation = new Div(mainView, productView, purchaseView, view2, view3, right);
 
         navigation.addClassName("main-layout__nav");
 

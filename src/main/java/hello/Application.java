@@ -2,15 +2,21 @@ package hello;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import hello.entities.User;
+import hello.repositories.UserRepository;
 
 @SuppressWarnings("unused")
-@SpringBootApplication
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class Application extends SpringBootServletInitializer{
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
@@ -55,6 +61,30 @@ public class Application extends SpringBootServletInitializer{
 			}
 			log.info("");
 			
+		};
+	}*/
+	
+	
+	/*
+	@Bean
+	public CommandLineRunner registerNewUserAccount(UserRepository userRepository) {
+	   
+		return (args) -> {
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			
+		    User user = new User();
+		    user.setUserName("user");
+		     
+		    user.setPassword("test");
+		    user.setAccountNonExpired(true);
+		    user.setAccountNonLocked(true);
+		    user.setCredentialsNonExpired(true);
+		    user.setEnabled(true);
+		    System.out.println(user.getPassword());
+		    log.info("ADD USER:");
+		    log.info(user.getPassword());
+		    log.info(user.getPassword());
+		    userRepository.save(user);
 		};
 	}*/
 

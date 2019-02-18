@@ -19,7 +19,7 @@ import hello.repositories.CustomerRepository;
 import org.springframework.util.StringUtils;
 
 @SuppressWarnings("unused")
-@Route(value = "Main", layout = MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 @PageTitle("Customers")
 public class MainView extends VerticalLayout {
 

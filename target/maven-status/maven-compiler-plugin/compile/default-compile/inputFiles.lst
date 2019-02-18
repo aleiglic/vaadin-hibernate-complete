@@ -22,9 +22,10 @@
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/SpringRouteRegistryInitializer.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/repositories/PurchaseDetailRepository.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/Purchase.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/authentication/SpringSecurityConfig.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/projections/CustomerProj.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/repositories/CustomerRepository.java
-/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/authentication/WebSecurityConfig.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/authentication/Authorities.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/MainController.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/repositories/PurchaseRepository.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/LogoutView.java
