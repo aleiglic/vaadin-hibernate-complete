@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity
@@ -33,24 +34,31 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+			
+			//.accessDeniedPage("/login-error")
 			.csrf().disable().exceptionHandling()
-			.accessDeniedPage("/login?error").and()
+			//.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("login"))
+			.accessDeniedPage("/accessDenied").and()
 			.authorizeRequests()
 				.antMatchers("/login/**", "/login?error", "/VAADIN/**", 
 						"/PUSH/**", "/UIDL/**", "/login", "/login/**", "/error/**",
 						"/accessDenied/**", "/vaadinServlet/**", "/logout").permitAll()
-				.antMatchers("/frontend/webapp/styles/**").permitAll()
+				//.antMatchers("/frontend/webapp/styles/**").permitAll()
+				.antMatchers("/frontend/**").permitAll()
 				.regexMatchers(HttpMethod.POST, "/\\?v-r=.*").permitAll()
-				.antMatchers("/**").fullyAuthenticated()
-				/*.anyRequest().authenticated()*/
+				//.antMatchers("/**").fullyAuthenticated()
+				.anyRequest().authenticated()
 				.and()
+				
 			.formLogin()
+				.loginPage("/login")
 				.defaultSuccessUrl("/")
 				.and()
 			.httpBasic()
 				.and()
 			.logout()                                                                
-	            //.logoutUrl("mylogout")                                                 
+	            //.logoutUrl("logout")
+				.clearAuthentication(true)
 	            .logoutSuccessUrl("/login")                                           
 	            .invalidateHttpSession(true)                                             
 	            .deleteCookies()                                       
