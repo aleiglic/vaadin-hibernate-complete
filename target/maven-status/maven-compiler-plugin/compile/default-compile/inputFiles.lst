@@ -5,6 +5,7 @@
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/View3.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/MainLayout.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/PurchaseEditor.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/UserEditor.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/LoginView.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/Customer.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/dto/CustomerDto.java
@@ -14,6 +15,7 @@
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/PurchaseDetailEditor.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/Application.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/View2.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/UserView.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/repositories/ProductRepository.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/authentication/AuthService.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/MainView.java

@@ -75,6 +75,10 @@ public class MainLayout extends Div
         view3.add(new Icon(VaadinIcon.ARROW_UP), new Text("Make purchase"));
         view3.addClassName("main-layout__nav-item");
         
+        RouterLink userView = new RouterLink("", UserView.class);
+        userView.add(new Icon(VaadinIcon.USER), new Text("Users"));
+        userView.addClassName("main-layout__nav-item");
+        
         HorizontalLayout right = new HorizontalLayout();
         
         Button logout = new Button("Logout", VaadinIcon.SIGN_OUT.create());
@@ -92,7 +96,7 @@ public class MainLayout extends Div
         right.add(anchorExit);
         right.setAlignItems(Alignment.END);
         
-        Div navigation = new Div(mainView, productView, purchaseView, view2, view3, right);
+        Div navigation = new Div(mainView, productView, purchaseView, view2, view3, userView, right);
 
         navigation.addClassName("main-layout__nav");
 

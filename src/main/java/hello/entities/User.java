@@ -37,8 +37,23 @@ public class User implements UserDetails {
         Boolean enabled;
 
         @Transient
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder() ;
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+        public User() {}
+        
+        public User(String userName, String password) {
+        	this.userName = userName;
+        	this.password = passwordEncoder.encode(password);
+        	this.accountNonExpired = true;
+        	this.accountNonLocked = true;
+        	this.credentialsNonExpired = true;
+        	this.enabled = true;
+        }
+        
+        public Long getId() {
+        	return id;
+        }
+        
 		@Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
             return authorities;
@@ -86,7 +101,7 @@ public class User implements UserDetails {
             this.password = passwordEncoder.encode(password);
         }
 
-        public void setUserName(String userName) {
+        public void setUsername(String userName) {
             this.userName = userName;
         }
 
