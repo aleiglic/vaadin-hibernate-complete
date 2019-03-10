@@ -1,6 +1,5 @@
 package hello.ui;
 
-import java.math.BigDecimal;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -15,7 +14,6 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import hello.editors.UserEditor;
-import hello.entities.Product;
 import hello.entities.User;
 import hello.repositories.UserRepository;
 
@@ -29,6 +27,7 @@ public class UserView extends VerticalLayout{
 	private static final long serialVersionUID = -892231460069680982L;
 
 	private UserRepository repo;
+	@SuppressWarnings("unused")
 	private final UserEditor editor;
 	
 	final Grid<User> grid;
