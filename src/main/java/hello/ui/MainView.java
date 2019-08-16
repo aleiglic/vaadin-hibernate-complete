@@ -80,6 +80,7 @@ public class MainView extends VerticalLayout {
 
 		// Initialize listing
 		listCustomers(null);
+		this.addClassName("main-view");
 	}
 
 	// tag::listCustomers[]

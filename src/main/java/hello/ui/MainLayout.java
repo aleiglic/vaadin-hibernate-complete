@@ -32,6 +32,8 @@ import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 
 /**
@@ -39,6 +41,7 @@ import com.vaadin.flow.server.PageConfigurator;
  * child views below that.
  */
 //@HtmlImport("webapp/frontend/styles/shared-styles.html")
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 @HtmlImport("styles/shared-styles.html")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 public class MainLayout extends Div
@@ -50,6 +53,8 @@ public class MainLayout extends Div
 	private static final long serialVersionUID = -5072013618262207684L;
 
 	public MainLayout() {
+		
+		
         H2 title = new H2("Purchases");
         title.addClassName("main-layout__title");
         

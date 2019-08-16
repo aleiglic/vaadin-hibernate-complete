@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
 
-import com.mysql.jdbc.log.Log;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;

@@ -10,17 +10,14 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyNotifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.InitialPageSettings;
-import com.vaadin.flow.server.PageConfigurator;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 /*
 @Route(value = "login")
@@ -28,10 +25,10 @@ import com.vaadin.flow.server.PageConfigurator;
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 @PageTitle("Login")
 */
-@SuppressWarnings("unused")
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 @Route(value = "login")
 @HtmlImport("styles/shared-styles.html")
-public class LoginView extends Div implements KeyNotifier{
+public class LoginView extends FlexLayout implements KeyNotifier{
 
 	/**
 	 * 
@@ -51,18 +48,27 @@ public class LoginView extends Div implements KeyNotifier{
 
 	
 	public LoginView() {
-		H2 title = new H2("Purchases");
-        title.addClassName("main-layout__title");
+		
+		
+		H1 title = new H1("Please login");
+        //title.addClassName("main-layout__title");
         
         form = new VerticalLayout();
         form.setAlignItems(Alignment.CENTER);
         
+        
+        this.setAlignItems(Alignment.END);
+        form.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        
 		user = new TextField("User");
 		password = new PasswordField("Pass");
 		loginButton = new Button("LOGIN");
+		loginButton.setWidth(password.getWidth());
 		
+		form.add(title, user, password, loginButton);
+		form.setClassName("login-form");
 		
-		form.add(user, password, loginButton);
+		this.setClassName("login-page");
 		
 		//user.addClassName("main-layout__nav-item");
 		//password.addClassName("main-layout__nav-item");

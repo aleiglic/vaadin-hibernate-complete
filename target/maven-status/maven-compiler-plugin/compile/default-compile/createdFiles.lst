@@ -4,6 +4,7 @@ hello/repositories/CustomerRepository.class
 hello/repositories/ProductRepository.class
 hello/authentication/AuthService.class
 hello/repositories/PurchaseRepository.class
+hello/ui/UserView.class
 hello/entities/User.class
 hello/MainController.class
 hello/repositories/UserRepository.class
@@ -16,6 +17,8 @@ hello/entities/Customer.class
 hello/ui/ProductView.class
 hello/editors/PurchaseDetailEditor.class
 hello/ui/LoginView.class
+hello/editors/UserEditor.class
+hello/editors/UserEditor$ChangeHandler.class
 hello/editors/CustomerEditor$ChangeHandler.class
 hello/editors/CustomerEditor.class
 hello/ui/PurchaseView.class
