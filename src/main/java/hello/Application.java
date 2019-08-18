@@ -25,7 +25,6 @@ import hello.repositories.UserRepository;
 
 @SuppressWarnings("unused")
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 public class Application extends SpringBootServletInitializer{
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
