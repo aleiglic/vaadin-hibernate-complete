@@ -1,3 +1,4 @@
+hello/DispatcherServletPathProvider.class
 hello/editors/ProductEditor.class
 hello/repositories/PurchaseDetailRepository.class
 hello/repositories/CustomerRepository.class
@@ -8,6 +9,7 @@ hello/ui/UserView.class
 hello/entities/User.class
 hello/MainController.class
 hello/repositories/UserRepository.class
+hello/Snippet.class
 hello/ui/View2.class
 hello/dto/CustomerDto.class
 hello/ui/MainView.class
