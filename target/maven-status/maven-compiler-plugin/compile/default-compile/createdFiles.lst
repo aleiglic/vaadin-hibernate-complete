@@ -33,5 +33,4 @@ hello/editors/PurchaseEditor$ChangeHandler.class
 hello/authentication/Authorities.class
 hello/Application.class
 hello/ui/MainLayout.class
-hello/SpringRouteRegistryInitializer.class
 hello/entities/Purchase.class

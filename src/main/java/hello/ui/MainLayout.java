@@ -84,6 +84,7 @@ public class MainLayout extends Div
         userView.add(new Icon(VaadinIcon.USER), new Text("Users"));
         userView.addClassName("main-layout__nav-item");
         
+        
         HorizontalLayout right = new HorizontalLayout();
         
         Button logout = new Button("Logout", VaadinIcon.SIGN_OUT.create());
@@ -110,7 +111,8 @@ public class MainLayout extends Div
         add(header);
 
         addClassName("main-layout");
-    }
+        
+	}
 
     @Override
     public void configurePage(InitialPageSettings settings) {

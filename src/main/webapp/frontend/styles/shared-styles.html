@@ -57,8 +57,13 @@
         body {
             /* Avoid horizontal scrollbars, mainly on IE11 */
             overflow-x: hidden;
-            background-color: var(--lumo-contrast-5pct);
+            background-color: var(--lumo-contrast-5pct); 
         }
+        
+	    .primary {
+	    	background-color: var(--material-primary-color);
+	    	color: var(--material-primary-contrast-color);
+	    }
 
 		.background-image {
 			background: url("/frontend/styles/city-landscape.jpeg");
@@ -178,15 +183,7 @@
         	background-image: url("/frontend/styles/city-landscape.jpeg");
         	opacity: 0.40;
         }
-        
-        .main-view{
-        	background: url("/frontend/styles/city-landscape.jpeg") no-repeat center center fixed; 
-  			-webkit-background-size: cover;
-  			-moz-background-size: cover;
-  			-o-background-size: cover;
-  			background-size: cover;
-        	opacity: 0.40;
-        }
+       	
 
         /* Stack login-screen vertically on narrow screen */
         @media (max-width: 800px) {

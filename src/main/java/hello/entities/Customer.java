@@ -10,12 +10,14 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Where;
 import org.springframework.hateoas.Identifiable;
 
 
 
 @Entity
 @Table(name = "Customers")
+@Where(clause = "active = true")
 public class Customer implements Identifiable<Long>{
 
 	@Id
@@ -28,24 +30,29 @@ public class Customer implements Identifiable<Long>{
 
 	private LocalDate birthDate;
 	
+	private boolean active;
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Set<Purchase> purchases = new HashSet<Purchase>();
 	
 	public Customer() {
 		this.birthDate = LocalDate.parse("2018-08-12");
+		this.active = true;
 	}
 
 	public Customer(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = LocalDate.parse("2018-08-12");
+		this.active = true;
 	}
 	
 	public Customer(String firstName, String lastName, LocalDate birthDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
+		this.active = true;
 	}
 
 	public Long getId() {
@@ -107,6 +114,14 @@ public class Customer implements Identifiable<Long>{
 		List<Purchase> list = new ArrayList<Purchase>();
 		list.addAll(purchases);
 		return list;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }

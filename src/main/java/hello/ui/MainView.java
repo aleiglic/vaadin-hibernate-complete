@@ -1,21 +1,39 @@
 package hello.ui;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.upload.Receiver;
+import com.vaadin.flow.component.upload.SucceededEvent;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.FileBuffer;
+import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import hello.editors.CustomerEditor;
 import hello.entities.Customer;
+import hello.massiveupload.CustomerExcelImport;
 import hello.repositories.CustomerRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 @SuppressWarnings("unused")
@@ -31,23 +49,31 @@ public class MainView extends VerticalLayout {
 	private final CustomerRepository repo;
 
 	private final CustomerEditor editor;
+	
+	private final CustomerMassUpload customerMassUpload;
 
 	public final Grid<Customer> grid;
 
 	final TextField filter;
 
 	private final Button addNewBtn;
-
-	public MainView(CustomerRepository repo, CustomerEditor editor) {
+	
+	private final Button excelUpload;
+			
+	public MainView(CustomerRepository repo, CustomerEditor editor, 
+			CustomerMassUpload customerMassUpload, CustomerExcelImport customerExcelImport) {
 		this.repo = repo;
 		this.editor = editor;
+		this.customerMassUpload = customerMassUpload;
 		this.grid = new Grid<>(Customer.class);
 		this.filter = new TextField();
 		this.addNewBtn = new Button("New customer", VaadinIcon.PLUS.create());
-
+		this.excelUpload = new Button("Excel upload", VaadinIcon.UPLOAD.create());
+	
 		// build layout
-		HorizontalLayout actions = new HorizontalLayout(filter, addNewBtn);
-		add(actions, grid, editor);
+		HorizontalLayout actions = new HorizontalLayout(filter, addNewBtn, excelUpload);
+		actions.setAlignItems(Alignment.CENTER);
+		add(actions, customerMassUpload, grid, editor);
 
 		grid.setHeight("300px");
 		grid.setColumns("id", "firstName", "lastName", "age");
@@ -71,16 +97,26 @@ public class MainView extends VerticalLayout {
 			editor.editCustomer(new Customer("", ""));
 			Notification.show("New customer " + this.getUI().get().getPage(), 3, Position.MIDDLE);
 		});
-
+		
 		// Listen changes made by the editor, refresh data from backend
 		editor.setChangeHandler(() -> {
 			editor.setVisible(false);
 			listCustomers(filter.getValue());
 		});
-
+		
+		excelUpload.addClickListener(e -> {
+			customerMassUpload.upload();
+		});
+		
+		customerMassUpload.setChangeHandler(() -> {
+			customerMassUpload.setVisible(false);
+			listCustomers(filter.getValue());
+		});
+		
 		// Initialize listing
 		listCustomers(null);
 		this.addClassName("main-view");
+				
 	}
 
 	// tag::listCustomers[]
@@ -92,6 +128,8 @@ public class MainView extends VerticalLayout {
 			grid.setItems(repo.findByLastNameStartsWithIgnoreCase(filterText));
 		}
 	}
+	
 	// end::listCustomers[]
-
 }
+
+
