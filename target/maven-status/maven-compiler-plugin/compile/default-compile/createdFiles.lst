@@ -9,10 +9,8 @@ hello/entities/User.class
 hello/MainController.class
 hello/repositories/UserRepository.class
 hello/ui/View2.class
-hello/dto/CustomerDto.class
 hello/ui/MainView.class
 hello/editors/PurchaseDetailEditor$ChangeHandler.class
-hello/projections/CustomerProj.class
 hello/entities/Customer.class
 hello/ui/ProductView.class
 hello/editors/PurchaseDetailEditor.class
@@ -24,7 +22,6 @@ hello/editors/CustomerEditor.class
 hello/ui/PurchaseView.class
 hello/editors/ProductEditor$ChangeHandler.class
 hello/entities/Product.class
-hello/dto/PurchaseDto.class
 hello/authentication/SpringSecurityConfig.class
 hello/entities/PurchaseDetail.class
 hello/ui/View3.class

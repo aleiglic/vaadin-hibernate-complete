@@ -1,4 +1,4 @@
-package hello.editors;
+package hello.ui.editors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

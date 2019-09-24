@@ -14,9 +14,9 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import hello.editors.ProductEditor;
 import hello.entities.Product;
 import hello.repositories.ProductRepository;
+import hello.ui.editors.ProductEditor;
 
 @SuppressWarnings("unused")
 @Route(value = "Products", layout = MainLayout.class)

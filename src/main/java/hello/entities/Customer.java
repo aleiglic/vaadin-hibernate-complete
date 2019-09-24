@@ -18,7 +18,7 @@ import org.springframework.hateoas.Identifiable;
 @Entity
 @Table(name = "Customers")
 @Where(clause = "active = true")
-public class Customer implements Identifiable<Long>{
+public class Customer implements Identifiable<Long>, BusinessEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

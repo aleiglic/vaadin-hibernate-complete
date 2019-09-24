@@ -22,7 +22,6 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import hello.editors.PurchaseDetailEditor;
 import hello.entities.Customer;
 import hello.entities.Product;
 import hello.entities.Purchase;
@@ -31,6 +30,7 @@ import hello.repositories.CustomerRepository;
 import hello.repositories.ProductRepository;
 import hello.repositories.PurchaseDetailRepository;
 import hello.repositories.PurchaseRepository;
+import hello.ui.editors.PurchaseDetailEditor;
 
 @SuppressWarnings("unused")
 @Route(value = "make_purchase", layout = MainLayout.class)

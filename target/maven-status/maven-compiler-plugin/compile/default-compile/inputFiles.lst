@@ -1,5 +1,6 @@
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/PurchaseDetail.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/ProductEditor.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/massiveupload/EntityExcelRow.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/PurchaseView.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/Product.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/View3.java
@@ -8,17 +9,18 @@
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/UserEditor.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/LoginView.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/Customer.java
-/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/dto/CustomerDto.java
-/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/dto/PurchaseDto.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/User.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/CustomerEditor.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/editors/PurchaseDetailEditor.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/CustomerMassUpload.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/Application.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/View2.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/massiveupload/RowError.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/UserView.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/BusinessEntity.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/repositories/ProductRepository.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/massiveupload/CustomerExcelImport.java
+/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/massiveupload/CustomerExcelRow.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/authentication/AuthService.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/MainView.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/ui/ProductView.java
@@ -27,7 +29,6 @@
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/massiveupload/ThrowingConsumer.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/entities/Purchase.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/authentication/SpringSecurityConfig.java
-/home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/projections/CustomerProj.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/repositories/CustomerRepository.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/authentication/Authorities.java
 /home/ale/git/gs-crud-with-vaadin/complete/src/main/java/hello/MainController.java

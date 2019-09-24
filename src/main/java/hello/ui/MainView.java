@@ -21,10 +21,11 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import hello.editors.CustomerEditor;
 import hello.entities.Customer;
 import hello.massiveupload.CustomerExcelImport;
 import hello.repositories.CustomerRepository;
+import hello.ui.editors.CustomerEditor;
+import hello.ui.massiveupload.CustomerMassUpload;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package hello.editors;
+package hello.ui.editors;
 
 import java.math.BigDecimal;
 

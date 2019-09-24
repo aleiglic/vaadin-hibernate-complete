@@ -1,4 +1,4 @@
-package hello.editors;
+package hello.ui.editors;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyNotifier;

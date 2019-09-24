@@ -3,8 +3,9 @@ package hello.massiveupload;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 
 import hello.entities.Customer;
+import hello.massiveupload.excelrow.CustomerExcelRow;
+import hello.massiveupload.excelrow.EntityExcelRow;
 
 @SpringComponent
 public class CustomerExcelImport{
@@ -26,13 +29,14 @@ public class CustomerExcelImport{
 	private static final int SECOND_COLUMN = 1;
 	private static final int THIRD_COLUMN = 2;
 	private static final int FIRSTNAME_MAX = 255;
+	private static final long MINIMUM_AGE = 13;
 
 	@Autowired
 	public CustomerExcelImport() {}
 	
-	public List<Customer> readCustomersExcel(InputStream reapExcelDataFileStream) throws Exception {
+	public List<EntityExcelRow> readCustomersExcel(InputStream reapExcelDataFileStream) throws Exception {
 
-		List<Customer> tempCustomersList = new ArrayList<Customer>();
+		List<EntityExcelRow> tempExcelRowList = new LinkedList<EntityExcelRow>();
 		XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFileStream);
 		XSSFSheet worksheet = workbook.getSheetAt(FIRST_SHEET);
 		
@@ -42,40 +46,93 @@ public class CustomerExcelImport{
 		
 		while(it.hasNext()) {
 			Customer tempCustomer = new Customer();
-			Row customerRow = it.next();
 			
-			String firstName = readFirstName(customerRow);
-			String lastName = customerRow.getCell(SECOND_COLUMN).getStringCellValue();
-			LocalDate birthDate = customerRow.getCell(THIRD_COLUMN).getDateCellValue()
-					.toInstant().atZone(ZoneId.systemDefault())
-					.toLocalDate();
+			Boolean isError = false;
+			Row customerRow = it.next();
+			EntityExcelRow entityRow = new CustomerExcelRow(tempCustomer);
+			entityRow.setRowError(new RowError(customerRow.getRowNum(), ""));
+			entityRow.setError(isError);
+
+			
+			String firstName = readFirstName(customerRow.getCell(FIRST_COLUMN), entityRow);
+			String lastName = readLastName(customerRow.getCell(SECOND_COLUMN), entityRow);
+			LocalDate birthDate = readBirthDate(customerRow.getCell(THIRD_COLUMN), entityRow);
 			
 			tempCustomer.setFirstName(firstName);
 			tempCustomer.setLastName(lastName);
 			tempCustomer.setBirthDate(birthDate);
-
-			tempCustomersList.add(tempCustomer);
+			
+			tempExcelRowList.add(entityRow);
 		}
 		
 		workbook.close();
-		return tempCustomersList;
+		return tempExcelRowList;
 	}
 
-	private String readFirstName(Row customerRow) throws Exception {
-		Cell firstNameCell = customerRow.getCell(FIRST_COLUMN);
-		if(cellIsEmpty(firstNameCell))
-			throw new Exception("Column FirstName must not be empty.");
-		if(!firstNameCell.getCellType().equals(CellType.STRING))
-			throw new Exception("Column FirstName must be a character string");
-		if(firstNameCell.getStringCellValue().length() > FIRSTNAME_MAX)
-			throw new Exception("Column FirstName must not have more than " 
-				+ FIRSTNAME_MAX + " characters.");
-		return customerRow.getCell(FIRST_COLUMN).getStringCellValue();
-	}
+	
 
+	private String readFirstName(Cell firstNameCell, EntityExcelRow entityRow){
+		Boolean isError = entityRow.isError();
+		String rowMessage = entityRow.getRowError().getErrorMessage();
+		
+		if(isError = (firstNameCell == null || cellIsEmpty(firstNameCell)))
+			rowMessage = rowMessage.concat("Column FirstName must not be empty.\n");
+		else if(isError = !firstNameCell.getCellType().equals(CellType.STRING))
+			rowMessage = rowMessage.concat("Column FirstName must be a character string\n");
+		else if(isError = firstNameCell.getStringCellValue().length() > FIRSTNAME_MAX)
+			rowMessage = rowMessage.concat("Column FirstName must not have more than " 
+				+ FIRSTNAME_MAX + " characters.\n");
+		entityRow.setError(isError);
+		entityRow.getRowError().setErrorMessage(rowMessage);
+		return isError ? null : firstNameCell.getStringCellValue();
+	}
+	
+	private String readLastName(Cell lastNameCell, EntityExcelRow entityRow) {
+		Boolean isError = entityRow.isError();
+		String rowMessage = entityRow.getRowError().getErrorMessage();
+		
+		if(isError = (lastNameCell == null || cellIsEmpty(lastNameCell)))
+			rowMessage = rowMessage.concat("Column LastName must not be empty.\n");
+		else if(isError = !lastNameCell.getCellType().equals(CellType.STRING))
+			rowMessage = rowMessage.concat("Column LastName must be a character string\n");
+		else if(isError = lastNameCell.getStringCellValue().length() > FIRSTNAME_MAX)
+			rowMessage = rowMessage.concat("Column LastName must not have more than " 
+				+ FIRSTNAME_MAX + " characters.\n");
+		entityRow.setError(isError);
+		entityRow.getRowError().setErrorMessage(rowMessage);
+		return isError ? null : lastNameCell.getStringCellValue();
+	}
+	
+	private LocalDate readBirthDate(Cell birthDateCell, EntityExcelRow entityRow) {
+		Boolean isError = entityRow.isError();
+		String rowMessage = entityRow.getRowError().getErrorMessage();
+		LocalDate birthDate = LocalDate.now(ZoneId.systemDefault());
+		
+		if(isError = (birthDateCell == null || cellIsEmpty(birthDateCell)))
+			rowMessage = rowMessage.concat("Column BirthDate must not be empty.\n");
+		else try {
+			birthDate = birthDateCell.getDateCellValue()
+					.toInstant().atZone(ZoneId.systemDefault())
+					.toLocalDate();
+		} catch (IllegalStateException e) {
+			isError = true;
+			rowMessage = rowMessage.concat("Column BirthDate must be a valid date.\n");
+		}
+		if(isError = birthDate.isAfter(LocalDate.now().minus(MINIMUM_AGE, ChronoUnit.YEARS)))
+			rowMessage = rowMessage.concat("Customer must be at least "+ MINIMUM_AGE +".\n");
+		
+		entityRow.setError(isError);
+		entityRow.getRowError().setErrorMessage(rowMessage);
+		return birthDate;
+	}
+	
 	private boolean cellIsEmpty(Cell cell) {
-		return cell.getCellType().equals(CellType.BLANK) 
-			|| cell.getStringCellValue().isEmpty();
+		CellType type = cell.getCellType();
+		return 
+			   type.equals(CellType.BLANK) 
+			|| type.equals(CellType.STRING) ? cell.getStringCellValue().equals("") : false 	
+			|| type.equals(CellType.NUMERIC) ? cell.getNumericCellValue() == 0 : false
+			;
 	}
 }
 
