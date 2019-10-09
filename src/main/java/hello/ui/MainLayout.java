@@ -111,6 +111,8 @@ public class MainLayout extends Div
         add(header);
 
         addClassName("main-layout");
+                
+		
         
 	}
 

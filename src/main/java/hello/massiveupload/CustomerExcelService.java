@@ -22,7 +22,7 @@ import hello.massiveupload.excelrow.CustomerExcelRow;
 import hello.massiveupload.excelrow.EntityExcelRow;
 
 @SpringComponent
-public class CustomerExcelImport{
+public class CustomerExcelService{
 
 	private static final int FIRST_SHEET = 0;
 	private static final int FIRST_COLUMN = 0;
@@ -32,7 +32,7 @@ public class CustomerExcelImport{
 	private static final long MINIMUM_AGE = 13;
 
 	@Autowired
-	public CustomerExcelImport() {}
+	public CustomerExcelService() {}
 	
 	public List<EntityExcelRow> readCustomersExcel(InputStream reapExcelDataFileStream) throws Exception {
 

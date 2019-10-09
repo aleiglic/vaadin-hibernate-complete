@@ -20,9 +20,10 @@ import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.shared.ui.LoadMode;
 
 import hello.entities.Customer;
-import hello.massiveupload.CustomerExcelImport;
+import hello.massiveupload.CustomerExcelService;
 import hello.repositories.CustomerRepository;
 import hello.ui.editors.CustomerEditor;
 import hello.ui.massiveupload.CustomerMassUpload;
@@ -33,6 +34,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -46,6 +49,8 @@ public class MainView extends VerticalLayout {
 	 * 
 	 */
 	private static final long serialVersionUID = -5959967959646653988L;
+
+	private static final int MIN_SEARCH_LENGTH = 3;
 
 	private final CustomerRepository repo;
 
@@ -62,7 +67,7 @@ public class MainView extends VerticalLayout {
 	private final Button excelUpload;
 			
 	public MainView(CustomerRepository repo, CustomerEditor editor, 
-			CustomerMassUpload customerMassUpload, CustomerExcelImport customerExcelImport) {
+			CustomerMassUpload customerMassUpload, CustomerExcelService customerExcelImport, ServletContext context) {
 		this.repo = repo;
 		this.editor = editor;
 		this.customerMassUpload = customerMassUpload;
@@ -78,7 +83,7 @@ public class MainView extends VerticalLayout {
 
 		grid.setHeight("300px");
 		grid.setColumns("id", "firstName", "lastName", "age");
-		grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
+		grid.getColumnByKey("id").setWidth("150px").setFlexGrow(0);
 
 		filter.setPlaceholder("Filter by last name");
 
@@ -86,7 +91,14 @@ public class MainView extends VerticalLayout {
 
 		// Replace listing with filtered content when user changes filter
 		filter.setValueChangeMode(ValueChangeMode.EAGER);
-		filter.addValueChangeListener(e -> listCustomers(e.getValue()));
+		filter.addValueChangeListener(
+			e -> {
+				if(e.getValue().length() >= MIN_SEARCH_LENGTH)
+					listCustomers(e.getValue());
+				else
+					listCustomers("");
+			}
+		);
 
 		// Connect selected Customer to editor or hide if none is selected
 		grid.asSingleSelect().addValueChangeListener(e -> {
@@ -123,7 +135,7 @@ public class MainView extends VerticalLayout {
 	// tag::listCustomers[]
 	public void listCustomers(String filterText) {
 		if (StringUtils.isEmpty(filterText)) {
-			grid.setItems(repo.findAll());
+			grid.setItems(repo.findTop100());
 		}
 		else {
 			grid.setItems(repo.findByLastNameStartsWithIgnoreCase(filterText));

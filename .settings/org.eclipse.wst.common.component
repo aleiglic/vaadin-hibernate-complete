@@ -10,10 +10,10 @@
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
-                
-        <property name="context-root" value="gs-crud-with-vaadin"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
                 
         <property name="java-output-path" value="/vaadin-hibernate-example-complete/target/classes"/>
+        <property name="context-root" value="complete"/>
             
     </wb-module>
     

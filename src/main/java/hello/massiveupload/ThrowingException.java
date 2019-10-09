@@ -2,6 +2,7 @@ package hello.massiveupload;
 
 
 import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.upload.SucceededEvent;
 
 @FunctionalInterface
@@ -21,6 +22,7 @@ public interface ThrowingException<T, E extends Exception> {
 //				} catch (ClassCastException ccEx) {
 //					throw new RuntimeException(ex);
 //				}
+				new Notification(ex.getMessage()).open();
 				throw new RuntimeException(ex);
 			}
 		};
