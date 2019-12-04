@@ -28,6 +28,17 @@ public class RowError {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+
+	public void addErrorLine(String errorMessage){
+		if(getErrorMessage() == null) 
+			setErrorMessage("");
+		if(getErrorMessage().isEmpty())
+			setErrorMessage(errorMessage);
+		else
+			setErrorMessage(getErrorMessage()
+				.concat("\n" + errorMessage)
+			);
+	}
 	
 	
 }

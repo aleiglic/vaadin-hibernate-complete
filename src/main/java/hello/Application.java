@@ -23,7 +23,7 @@ public class Application extends SpringBootServletInitializer{
 	
 	public Application() {
         super();
-        setRegisterErrorPageFilter(false); // <- this one
+        //setRegisterErrorPageFilter(false); // <- this one
     }
 	
 	

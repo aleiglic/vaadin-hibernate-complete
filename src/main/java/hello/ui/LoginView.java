@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyNotifier;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H1;
@@ -61,7 +62,9 @@ public class LoginView extends FlexLayout implements KeyNotifier{
         form.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         
 		user = new TextField("User");
+		user.setId("user-field");
 		password = new PasswordField("Pass");
+		password.setId("password-field");
 		loginButton = new Button("LOGIN");
 		loginButton.setWidth(password.getWidth());
 		
@@ -81,7 +84,7 @@ public class LoginView extends FlexLayout implements KeyNotifier{
 		addKeyPressListener(Key.ENTER, e -> login());
 		
 		add(form);
-		
+		setFocus();
 	}
 	
 	private void login() {
@@ -93,6 +96,10 @@ public class LoginView extends FlexLayout implements KeyNotifier{
 			//redirect to main application
 			this.getUI().get().navigate("");
 		}
+	}
+
+	private void setFocus(){
+		UI.getCurrent().getPage().executeJavaScript("document.getElementById(\"user-field\").focus();");
 	}
 
 }

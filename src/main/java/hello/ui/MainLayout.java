@@ -112,8 +112,7 @@ public class MainLayout extends Div
 
         addClassName("main-layout");
                 
-		
-        
+        this.setSizeFull();        
 	}
 
     @Override

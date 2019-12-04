@@ -8,14 +8,14 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.vaadin.flow.spring.annotation.SpringComponent;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.vaadin.flow.spring.annotation.SpringComponent;
 
 import hello.entities.Customer;
 import hello.massiveupload.excelrow.CustomerExcelRow;
@@ -73,56 +73,56 @@ public class CustomerExcelService{
 
 	private String readFirstName(Cell firstNameCell, EntityExcelRow entityRow){
 		Boolean isError = entityRow.isError();
-		String rowMessage = entityRow.getRowError().getErrorMessage();
-		
+		RowError rowError = entityRow.getRowError();
+
 		if(isError = (firstNameCell == null || cellIsEmpty(firstNameCell)))
-			rowMessage = rowMessage.concat("Column FirstName must not be empty.\n");
+			rowError.addErrorLine("Column FirstName must not be empty.");
 		else if(isError = !firstNameCell.getCellType().equals(CellType.STRING))
-			rowMessage = rowMessage.concat("Column FirstName must be a character string\n");
+			rowError.addErrorLine("Column FirstName must be a character string.");
 		else if(isError = firstNameCell.getStringCellValue().length() > FIRSTNAME_MAX)
-			rowMessage = rowMessage.concat("Column FirstName must not have more than " 
-				+ FIRSTNAME_MAX + " characters.\n");
+			rowError.addErrorLine("Column FirstName must not have more than " 
+				+ FIRSTNAME_MAX + " characters.");
 		entityRow.setError(isError);
-		entityRow.getRowError().setErrorMessage(rowMessage);
+		entityRow.setRowError(rowError);
 		return isError ? null : firstNameCell.getStringCellValue();
 	}
 	
 	private String readLastName(Cell lastNameCell, EntityExcelRow entityRow) {
 		Boolean isError = entityRow.isError();
-		String rowMessage = entityRow.getRowError().getErrorMessage();
-		
+		RowError rowError = entityRow.getRowError();
+
 		if(isError = (lastNameCell == null || cellIsEmpty(lastNameCell)))
-			rowMessage = rowMessage.concat("Column LastName must not be empty.\n");
+			rowError.addErrorLine("Column LastName must not be empty.");
 		else if(isError = !lastNameCell.getCellType().equals(CellType.STRING))
-			rowMessage = rowMessage.concat("Column LastName must be a character string\n");
+			rowError.addErrorLine("Column LastName must be a character string");
 		else if(isError = lastNameCell.getStringCellValue().length() > FIRSTNAME_MAX)
-			rowMessage = rowMessage.concat("Column LastName must not have more than " 
-				+ FIRSTNAME_MAX + " characters.\n");
+			rowError.addErrorLine("Column LastName must not have more than " 
+				+ FIRSTNAME_MAX + " characters.");
 		entityRow.setError(isError);
-		entityRow.getRowError().setErrorMessage(rowMessage);
+		entityRow.setRowError(rowError);
 		return isError ? null : lastNameCell.getStringCellValue();
 	}
 	
 	private LocalDate readBirthDate(Cell birthDateCell, EntityExcelRow entityRow) {
 		Boolean isError = entityRow.isError();
-		String rowMessage = entityRow.getRowError().getErrorMessage();
+		RowError rowError = entityRow.getRowError();
 		LocalDate birthDate = LocalDate.now(ZoneId.systemDefault());
 		
 		if(isError = (birthDateCell == null || cellIsEmpty(birthDateCell)))
-			rowMessage = rowMessage.concat("Column BirthDate must not be empty.\n");
+			rowError.addErrorLine("Column BirthDate must not be empty.");
 		else try {
 			birthDate = birthDateCell.getDateCellValue()
 					.toInstant().atZone(ZoneId.systemDefault())
 					.toLocalDate();
 		} catch (IllegalStateException e) {
 			isError = true;
-			rowMessage = rowMessage.concat("Column BirthDate must be a valid date.\n");
+			rowError.addErrorLine("Column BirthDate must be a valid date.");
 		}
 		if(isError = birthDate.isAfter(LocalDate.now().minus(MINIMUM_AGE, ChronoUnit.YEARS)))
-			rowMessage = rowMessage.concat("Customer must be at least "+ MINIMUM_AGE +".\n");
+			rowError.addErrorLine("Customer must be at least "+ MINIMUM_AGE +".");
 		
 		entityRow.setError(isError);
-		entityRow.getRowError().setErrorMessage(rowMessage);
+		entityRow.setRowError(rowError);
 		return birthDate;
 	}
 	
